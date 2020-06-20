@@ -8,7 +8,7 @@ import argparse
 import sys
 from utils import separate_magnitude_phase, combine_magnitude_phase
 
-
+music_flie='songs/input/bbb.wav'
 
 def main(args):
     input_dir = args.input_dir
@@ -24,6 +24,8 @@ def main(args):
         os.mkdir(output_dir)
 
     song_filenames = list()
+    file_route1 = 'voice'
+    file_route2 = 'music'
     for file in os.listdir(input_dir):
         if file.endswith('.mp3'):
             song_filenames.append(os.path.join(input_dir, file))
@@ -78,10 +80,13 @@ def main(args):
         librosa.output.write_wav(wav_mono_filepath, wav_mono, dataset_sr)
         librosa.output.write_wav(wav_music_hat_filepath, y_music_hat, dataset_sr)
         librosa.output.write_wav(wav_voice_hat_filepath, y_voice_hat, dataset_sr)
-
-    y, sr = librosa.load('bbb.wav')
+    y, sr = librosa.load(music_flie)
     S = np.abs(librosa.stft(y))
     print(librosa.power_to_db(S ** 2))
+    if music_flie=='songs/input/bbb.wav':
+        print(file_route1)
+    else:
+        print(file_route2)
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
