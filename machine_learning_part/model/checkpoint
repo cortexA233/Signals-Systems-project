@@ -1,0 +1,2 @@
+model_checkpoint_path: "svmrnn.ckpt-947400"
+all_model_checkpoint_paths: "svmrnn.ckpt-947400"
